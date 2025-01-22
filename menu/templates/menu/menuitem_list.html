@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <h1 style="text-decoration: underline;">Menu list</h1>
+
+        <h2>Starters</h2>
+
+        {% for menu in object_list %}
+        {% if menu.category == "Starter" %}
+        <p><b>{{menu.name}}</b></p>
+        <p><i> {{menu.description}}... £{{menu.price}}</i></p>        
+        {% endif %}
+        {% endfor %}
+
+
+        <h2>Mains</h2>
+        {% for menu in object_list %}
+        {% if menu.category == "Main" %}
+        <p><b>{{menu.name}}</b></p>
+        <p><i> {{menu.description}}... £{{menu.price}}</i></p>
+        {% endif %}
+        {% endfor %}
+
+        <h2>Drinks</h2>
+        {% for menu in object_list %}
+        {% if menu.category == "Drink" %}
+        <p><b>{{menu.name}}</b></p>
+        <p><i> {{menu.description}}... £{{menu.price}}</i></p>
+        {% endif %}
+        {% endfor %}
+    </div>
+</body>
+
+</html>
+
+</html>
+

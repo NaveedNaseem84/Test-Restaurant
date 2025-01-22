@@ -19,13 +19,15 @@ from django.urls import path, include
 from welcome import views as index_views
 from aboutus import views as about_views
 from booking import views as booking_views
-from menu import views as menu_views
+#from menu import views as menu_views
 
 urlpatterns = [
     
     path('aboutus/', about_views.about_us, name='about'),
     path('booking/', booking_views.booking_confirmation, name='booking'),
-    path('menu/', menu_views.menu, name='menu'),
+    #path('menu/', menu_views.menu, name='menu'),
+
+    path("", include("menu.urls"), name="menu-urls"),
     path('welcome/', index_views.index, name='index'),
     path('admin/', admin.site.urls),
 ]

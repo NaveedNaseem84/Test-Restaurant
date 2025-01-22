@@ -20,4 +20,7 @@ class MenuItem(models.Model):
     price = models.DecimalField(max_digits=5, decimal_places=2)
     added_on = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f"Menu item: {self.name} Category: {self.category} Price: {self.price}"
+
 
