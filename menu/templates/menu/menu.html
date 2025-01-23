@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<title>Sultans | Menu</title>
+<!-- index.html content starts here -->
+<div class="container-fluid">
+    <div style="text-align: center;">
+        <h1 style="text-decoration: underline;">Menu list</h1>
+
+        <h2>Starters</h2>
+
+        {% for menu in object_list %}
+        {% if menu.category == "Starter" %}
+        <p><b>{{menu.name}}</b></p>
+        <p><i> {{menu.description}}... £{{menu.price}}</i></p>        
+        {% endif %}
+        {% endfor %}
+
+
+        <h2>Mains</h2>
+        {% for menu in object_list %}
+        {% if menu.category == "Main" %}
+        <p><b>{{menu.name}}</b></p>
+        <p><i> {{menu.description}}... £{{menu.price}}</i></p>
+        {% endif %}
+        {% endfor %}
+
+        <h2>Drinks</h2>
+        {% for menu in object_list %}
+        {% if menu.category == "Drink" %}
+        <p><b>{{menu.name}}</b></p>
+        <p><i> {{menu.description}}... £{{menu.price}}</i></p>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+<!-- index.html content ends here -->
+{% endblock %}
