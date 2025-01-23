@@ -2,8 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 CATEGORIES_CHOICES = [
-    ("Starter", "Starter"),
-    ("Main", "Main"),
+    ("Starter", "Starter"),    
     ("Side", "Side"),
     ("Dessert", "Dessert"),
     ("Mains", "Mains"),

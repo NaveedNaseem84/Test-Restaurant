@@ -1,0 +1,14 @@
+[
+    {
+    "model": "menu.MenuItem",
+    "pk": null,
+    "fields": {
+        "name": "Chicken Tikka",
+        "slug": "chicken-tikka",
+        "description": "Grilled chicken pieces marinated in yogurt and Indian spices.",
+        "category": "Starter",
+        "price": 7.00,
+        "added_on": "2025-01-23T12:00:00Z"
+    }
+    }
+]
