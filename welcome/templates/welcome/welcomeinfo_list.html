@@ -1,0 +1,45 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sultans | Welcome</title>
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <header>
+            <a class="" aria-current="page" href="/menu/">Menu</a>
+           <a class="" aria-current="page" href="/booking/">Booking</a>
+           <a class="" aria-current="page" href="/aboutus/">About</a>
+           
+        </header>
+
+        <body>
+            {% for textinfo in object_list %}
+            {% if textinfo.is_valid == "Yes" %}
+            <div>
+            <h1>{{textinfo.welcome_title}}</h1>
+
+            <h2>{{textinfo.description}}</h2>
+            <p>{{textinfo.contact_info}}</p>
+        </div>
+            {% endif %}
+
+            {% endfor %}
+
+           
+            
+        </body>
+    </div>
+</body>
+
+</html>
+
+</html>
+
