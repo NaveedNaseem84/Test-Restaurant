@@ -22,6 +22,7 @@ from booking import views as booking_views
 urlpatterns = [
 
     path('admin/', admin.site.urls),
+    path('summernote/', include('django_summernote.urls')),
     path("aboutus/", include("aboutus.urls"), name="aboutus-urls"),
     path('booking/', booking_views.booking_confirmation, name='booking'),
     path("menu/", include("menu.urls")),
