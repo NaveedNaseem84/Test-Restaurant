@@ -10,5 +10,6 @@ from .models import AboutUs
 
 class About(generic.ListView):
     queryset = AboutUs.objects.all()
-    template_name = "aboutus.html"
+    #template_name = "aboutus.html"
+    template_name = "aboutus/about.html"
 
