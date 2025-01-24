@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<title>Sultans | Menu</title>
+<!-- index.html content starts here -->
+<div class="container-fluid">
+    <div style="text-align: center; margin-top: 200px;">        
+        <div >
+            {% for textinfo in object_list %}
+            {% if textinfo.is_valid == "Yes" %}
+            <div>
+                <h1>{{textinfo.welcome_title}}</h1>
+
+                <h2>{{textinfo.description}}</h2>
+                <p>{{textinfo.contact_info}}</p>
+                {% endif %}
+                {% endfor %}              
+            </div>
+        </div>
+    </div> 
+
+<!-- index.html content ends here -->
+{% endblock %}
