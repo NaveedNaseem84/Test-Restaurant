@@ -9,7 +9,7 @@
             <h2>Where desire meets elegance.</h2>
             {% for textinfo in object_list %}
             {% if textinfo.is_valid == "Yes" %}
-            <div>
+            <div style="padding-top: 50px;">
                 {{textinfo.description | safe}}
                 {% endif %}
                 {% endfor %}
