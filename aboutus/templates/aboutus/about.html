@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load static %}
+
 
 {% block content %}
 <title>Sultans | Menu</title>
@@ -6,7 +8,7 @@
 <div class="container-fluid">
     <div style="text-align: center; margin-top: 100px;">        
         
-        <div class="container">
+        <div class="container">         
             <div class="row">
               <div class="col-sm">
                 {% for about in object_list %}
@@ -16,6 +18,7 @@
               </div>
             </div>
           </div>
+         
     </div> 
 
 <!-- index.html content ends here -->
