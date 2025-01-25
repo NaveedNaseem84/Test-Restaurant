@@ -10,7 +10,7 @@
             {% for textinfo in object_list %}
             {% if textinfo.is_valid == "Yes" %}
             <div>
-                <!--<p>{{textinfo.contact_info | safe}}</p> -->
+                {{textinfo.description | safe}}
                 {% endif %}
                 {% endfor %}
             </div>
