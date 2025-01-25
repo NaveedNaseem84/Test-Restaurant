@@ -7,7 +7,7 @@ class MenuAdmin(SummernoteModelAdmin):
 
     list_display = ('name', 'description','price', 'category')
     search_fields = ['name','category']
-    list_filter = ('name','category')
+    list_filter = ('name','category','id')
     prepopulated_fields = {'slug': ('name',)}
     summernote_fields = ('description',)
 

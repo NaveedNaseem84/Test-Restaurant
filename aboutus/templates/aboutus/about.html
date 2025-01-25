@@ -11,7 +11,7 @@
               <div class="col-sm">
                 {% for about in object_list %}
                 <h1>{{about.title}}</h1>
-                <p>{{about.description}}</p>
+                <p>{{about.description | safe}}</p>
                 {% endfor %}
               </div>
             </div>
