@@ -1,15 +1,22 @@
 from django.shortcuts import render
-from django.views import generic
+from django.contrib import messages
 from .models import AboutUs
-#from django.http import HttpResponse
-
+#from .forms import CollaborateForm
 # Create your views here.
 
-#def menu(request):
-    #return HttpResponse("Hello, this is the menu page.")
-
-class About(generic.ListView):
-    queryset = AboutUs.objects.all()
-    #template_name = "aboutus.html"
-    template_name = "aboutus/about.html"
-
+def about_me(request):
+    """
+    Renders the About page
+    """  
+    about = AboutUs.objects.all().first()
+   
+    count= AboutUs.objects.all().count()
+    return render(
+        request,
+        "aboutus/about.html",
+        {
+            "about": about,
+            "count": count,
+           
+        },
+    )

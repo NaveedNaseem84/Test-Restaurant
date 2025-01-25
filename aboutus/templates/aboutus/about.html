@@ -1,25 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
-
-
 {% block content %}
 <title>Sultans | Menu</title>
 <!-- index.html content starts here -->
 <div class="container-fluid">
-    <div style="text-align: center; margin-top: 100px;">        
-        
+    <div style="text-align: center;">       
         <div class="container">         
             <div class="row">
-              <div class="col-sm">
-                {% for about in object_list %}
-                <h1>{{about.title}}</h1>
-                <p>{{about.description | safe}}</p>
-                {% endfor %}
+              <div class="col-sm">                      
+                  <h1>{{ about.title }}</h1>
+                  <p style="padding-top: 20px;">{{ about.description }}<p>                     
               </div>
             </div>
-          </div>
-         
-    </div> 
+          </div>         
+    </div>    
 
 <!-- index.html content ends here -->
 {% endblock %}

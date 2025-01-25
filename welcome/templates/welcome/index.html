@@ -3,13 +3,10 @@
 
 {% block content %}
 <title>Sultans | Menu</title>
-<div>
-    <img src="{% static 'images/welcome.webp' %}" width="me-auto">
-</div>
 <!-- index.html content starts here -->
 <div class="container-fluid">
-    
-    <div style="text-align: center; margin-top: 200px;">
+
+    <div style="text-align: center;">
         <div>
             <h1>Hello. Welcome to Sultan's.</h1>
             <h2>Where desire meets elegance.</h2>
@@ -20,8 +17,11 @@
                 {% endif %}
                 {% endfor %}
             </div>
+            <img id="welcome_img" src="/static/images/welcome.jpeg" alt=""class="responsive">
         </div>
-    </div>
 
-    <!-- index.html content ends here -->
-    {% endblock %}
+    </div>
+</div>
+
+<!-- index.html content ends here -->
+{% endblock %}
