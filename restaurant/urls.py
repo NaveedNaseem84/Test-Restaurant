@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from booking import views as booking_views
+#from booking import views as booking_views
 
 
 urlpatterns = [
@@ -24,7 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
     path("aboutus/", include("aboutus.urls"), name="aboutus-urls"),
-    path('booking/', booking_views.booking_confirmation, name='booking'),
+    #path('booking/', booking_views.booking_confirmation, name='booking'),
+    path("booking/", include("booking.urls"), name="aboutus-urls"),
     path("menu/", include("menu.urls")),
     path("", include("welcome.urls"), name="welcome-urls"),    
     
