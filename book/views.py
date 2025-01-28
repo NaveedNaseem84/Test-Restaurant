@@ -1,8 +1,20 @@
 from django.shortcuts import render
-from django.views import generic
 from .models import models
+from .forms import BookingForm
 
 def page_view(request):
-    return render (request, 'book/book.html')
+
+    if request.method == "POST":
+        form = BookingForm(data=request.POST)
+        if form.is_valid():
+            form.save()          
+    form = BookingForm()
+
+    return render (
+        request, 'book/book.html',
+        {
+            "form": form
+        }
+        )
     
 
