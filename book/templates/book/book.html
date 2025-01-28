@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<h1> NEW Restaurant Booking</h1>
+<div class="form-group" style="text-align: center">
+    {% if user.is_authenticated %}
+    <p class="text-end m-3 text-center">welcome {{ user }}!</p>
+    {% else %}
+    <p class="text-end m-3 text-center">You are not logged in. Please log in to make a booking.</p>
+    {% endif %}    
+{% endblock content %}
