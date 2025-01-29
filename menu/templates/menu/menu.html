@@ -3,6 +3,7 @@
 {% block content %}
 <title>Sultans | Menu</title>
 <!-- index.html content starts here -->
+
 <div class="container-fluid">
     <!--
     <div style="text-align: center;">
@@ -35,9 +36,14 @@
         {% endfor %}
     </div>
 -->
+
+
     <div class="container">
         <div class="row justify-content-md-center">
-            <h1>Our Menu</h1>
+            <h1>Our Menu</h1>            
+            <hr>
+            <p> Please select a heading below:</p>
+            <!--
             <hr>
             <div class="col-sm col-md-4">
                 <h2>Starters</h2>
@@ -67,7 +73,7 @@
                 <p><i> {{menu.description| safe}}</i></p>
                 <p><i> £{{menu.price| safe}}</i></p>
                 {% endif %}
-                {% endfor %}                
+                {% endfor %}
             </div>
             <br><br>
             <br><br><br>
@@ -88,11 +94,74 @@
                 <p><b>{{menu.name| safe}}</b></p>
                 <i> {{menu.description| safe}}</i>
                 <p><i> £{{menu.price| safe}}</i>
-                {% endif %}
-                {% endfor %}
+                    {% endif %}
+                    {% endfor %}
             </div>
-
         </div>
 
+    -->
         <!-- index.html content ends here -->
+
+        <div class="accordion accordion-flush " id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed bg-dark text-light" style="padding:10px;" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        <h4 style="margin-left: auto;">Starters</h4>
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body bg-dark text-white">
+                        {% for menu in object_list %}
+                        {% if menu.category == "Starter" %}
+                        <p><b>{{menu.name | safe}}</b></p>
+                        <p><i> {{menu.description| safe}}</i></p>
+                        <p><i> £{{menu.price| safe}}</i></p>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed bg-dark text-light"style="padding:10px;" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        <h4 style="margin-left: auto;">Mains</h4>
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body bg-dark text-white">
+                        {% for menu in object_list %}
+                        {% if menu.category == "Mains" %}
+                        <p><b>{{menu.name |safe}}</b></p>
+                        <p><i> {{menu.description |safe}}</i></p>
+                        <p><i> £{{menu.price |safe}}</i></p>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingThree">
+                    <button class="accordion-button collapsed bg-dark text-light" style="padding:10px;" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        <h4 style="margin-left: auto;" >Sides</h4>
+                    </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
+                    data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body bg-dark text-white">
+                        {% for menu in object_list %}
+                        {% if menu.category == "Side" %}
+                        <p><b>{{menu.name| safe}}</b></p>
+                        <p><i> {{menu.description| safe}}</i></p>
+                        <p><i> £{{menu.price| safe}}</i></p>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
         {% endblock %}

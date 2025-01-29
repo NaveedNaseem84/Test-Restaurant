@@ -36,42 +36,23 @@
                 <button class="btn btn-secondary btn-block me-5 mt-2" type="submit">Submit</button>
                 <button class="btn btn-warning btn-block mt-2" type="reset">Reset</button>
             </div>
-        </form>
-        <h1>All Bookings</h1>
-
-        <table>
-            <tbody>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Date</th>
-                        <th>Time </th>
-                        <th>For</th>
-                    </tr>
-                </thead>
-
-                {% for booking in bookings %}
-                {% if user.username == booking.name %}
-
-                <tr>
-
-                    <td>{{ booking.name }}</td>
-                    <td>{{ booking.email }}</td>
-                    <td>{{ booking.phone }}</td>
-                    <td>{{ booking.date }}</td>
-                    <td>{{ booking.time_slot }}</td>
-                    <td>{{ booking.number_of_people }}</td>
-                    <td><button class="btn btn-delete text-white">Delete</button></td>
-                    <td><button class="btn btn-delete text-white">Update</button></td>
-                </tr>
-
-                {% endif %}
-                {% endfor %}
-            </tbody>
-        </table>
+        </form>        
+    </div>
+    <div class="text-left">
+        <h1>Your Bookings</h1>
+        <br>
+        {% for booking in bookings %}
+        {% if user.username == booking.name %}
+        <p>Booking info:</p>
+        <p>on: {{ booking.date }} </p>
+        <p>at: {{ booking.time_slot }} </p>
+        <p>for: {{ booking.number_of_people }} people</p>
+        <button class="btn btn-danger">Delete</button>
+        <button class="btn btn-secondary">Update</button>
 
 
+        {% endif %}
+
+        {% endfor %}
     </div>
     {% endblock content %}
