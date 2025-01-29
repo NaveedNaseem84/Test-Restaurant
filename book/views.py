@@ -10,7 +10,7 @@ def page_view(request):
         form = BookingForm(data=request.POST)
         if form.is_valid():
             form.save()          
-    form = BookingForm()
+    form = BookingForm(initial={'name':request.user})
     
     bookings = MakeBooking.objects.all() 
     #bookings = MakeBooking.objects.filter(user=request.user) 
