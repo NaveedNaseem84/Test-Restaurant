@@ -11,7 +11,9 @@ def page_view(request):
         if form.is_valid():
             form.save()          
     form = BookingForm()
+    
     bookings = MakeBooking.objects.all() 
+    #bookings = MakeBooking.objects.filter(user=request.user) 
 
     return render (
         request, 'book/book.html',

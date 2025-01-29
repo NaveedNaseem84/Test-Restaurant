@@ -20,7 +20,7 @@ NO_OF_PEOPLE = [
 # Create your models here.
 
 class MakeBooking(models.Model):
-    #user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bookings", default=User)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name="bookings", blank=True)
     name = models.CharField(max_length=100)
     email = models.EmailField()
     phone = models.IntegerField()
