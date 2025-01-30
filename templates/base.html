@@ -3,6 +3,7 @@
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
+{% url 'admin.site.urls' as admin_url %}
 
 <!DOCTYPE html>
 <html class="h-100" lang="en">
@@ -55,6 +56,13 @@
                         <a class="nav-link navbar-brand" aria-current="page"
                             href="{% url 'about' %}">About</a>
                     </li>
+                    {% if user.is_superuser or user.is_staff %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'admin:index' %}">Admin</a>
+                    </li>
+                    {% else %}                    
+                    {% endif %}
+                    
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
@@ -74,6 +82,21 @@
             </div>
         </div>
     </nav>
+    <!-- displaying Django messages -->
+<div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2 ">
+        {% for message in messages %}
+        <div class=" alert {{ message.tags }} alert-dismissible
+          show bg-light text-dark" id="msg" role="alert">
+          {{ message | safe }}
+          <button type="button" class="btn-close"
+            data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
 
     <main class="flex-shrink-0 main-bg">
         

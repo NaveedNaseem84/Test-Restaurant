@@ -13,7 +13,7 @@
         <h2 class="accordion-header" id="flush-headingOne">
             <button class="accordion-button collapsed bg-dark text-light" style="padding:10px;" type="button" data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                <h6 style="margin-left: auto;">Click here to see your bookings</h6>
+                <h6 style="margin-left: auto;"> You have {{booking_count }} Booking(s). Click here to review</h6>
             </button>
         </h2>
         <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
@@ -22,6 +22,7 @@
                 {% for booking in bookings %}
                 {% if user.username == booking.name %}
                 <p>Booking info:</p>
+                <p>on: {{ booking.id }} </p>
                 <p>on: {{ booking.date }} </p>
                 <p>at: {{ booking.time_slot }} </p>
                 <p>for: {{ booking.number_of_people }} people</p>
