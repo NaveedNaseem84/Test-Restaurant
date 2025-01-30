@@ -16,7 +16,7 @@
                 <h6 style="margin-left: auto;"> You have {{booking_count }} Booking(s). Click here to review</h6>
             </button>
         </h2>
-        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+        <div id="flush-collapseOne" class="accordion-collapse collapse" acleria-labelledby="flush-headingOne"
             data-bs-parent="#accordionFlushExample">
             <div class="accordion-body bg-dark text-white">
                 {% for booking in bookings %}
@@ -24,11 +24,10 @@
                 <p>Booking info:</p>
                 <p>on: {{ booking.id }} </p>
                 <p>on: {{ booking.date }} </p>
-                <p>at: {{ booking.time_slot }} </p>
-                <p>for: {{ booking.number_of_people }} people</p>
-                <button class="btn btn-danger">Delete</button>
+                <p>at: {{ booking.time_slot }} </p>                
+                <button class="btn btn-danger" data-booking-id="{{ booking.id}}">Delete</button>
                 <button class="btn btn-secondary">Update</button>
-                
+            
                 {% endif %}
                 {% endfor %}
                 
@@ -91,3 +90,7 @@
    -->
   
     {% endblock content %}
+    {% block extras %}
+<script src="{% static 'js/bookings.js' %}"></script> 
+
+{% endblock %}

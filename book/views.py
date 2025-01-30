@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, reverse
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 from .models import MakeBooking
 from .forms import BookingForm
+
 
 
 def page_view(request):
@@ -29,12 +31,23 @@ def page_view(request):
             "booking_count": booking_count
         }
         )
-def show_bookings(request):
-    bookings = MakeBooking.objects.all()    
-    return render (
-        request, 'book/bookings.html',
-        {
-            "bookings": bookings
-        }
-    )
 
+def delete_booking(request, booking_id):
+    """
+    view to delete selected booking
+    """
+    booking = get_object_or_404(MakeBooking, id = booking_id)
+    booking.delete()
+   # messages.add_message(
+        #request, messages.SUCCESS,
+        #'Booking Deleted.'
+   # )
+    return render (
+        request, 'book/deleteconfirmation.html',
+        {
+            #"form": form,
+            #"booking": booking,
+            #"booking_count": booking_count
+        }
+        )
+        
