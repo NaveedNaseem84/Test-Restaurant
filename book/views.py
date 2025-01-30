@@ -38,16 +38,9 @@ def delete_booking(request, booking_id):
     """
     booking = get_object_or_404(MakeBooking, id = booking_id)
     booking.delete()
-   # messages.add_message(
-        #request, messages.SUCCESS,
-        #'Booking Deleted.'
-   # )
-    return render (
-        request, 'book/deleteconfirmation.html',
-        {
-            #"form": form,
-            #"booking": booking,
-            #"booking_count": booking_count
-        }
-        )
+    messages.add_message(
+        request, messages.SUCCESS,
+        'Booking Deleted.'
+    )
+    return HttpResponseRedirect(reverse('page_view'))
         
