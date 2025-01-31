@@ -24,9 +24,11 @@
                 <p>Booking info:</p>
                 <p>on: {{ booking.id }} </p>
                 <p>on: {{ booking.date }} </p>
-                <p>at: {{ booking.time_slot }} </p>                
+                <p>at: {{ booking.time_slot }} </p>
+                <p>phone: {{ booking.phone }} </p>  
+                <p>for: {{ booking.number_of_people }} </p>               
                 <button class="btn btn-danger" data-booking-id="{{ booking.id}}">Delete</button>
-                <button class="btn btn-secondary">Update</button>
+                <button class="btn btn-secondary" data-booking-id="{{ booking.id}}">Update</button>
             
                 {% endif %}
                 {% endfor %}

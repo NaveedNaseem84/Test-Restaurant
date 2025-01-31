@@ -10,6 +10,8 @@ for (let button of deleteButtons) {
 
 for (let button of editButtons) {
     button.addEventListener("click", (e) => {
+        let bookingId = e.target.getAttribute("data-booking-id");
+        window.location.href=`update_booking/${bookingId}`;     
         
     });
 
