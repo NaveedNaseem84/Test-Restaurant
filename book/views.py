@@ -12,16 +12,16 @@ def page_view(request):
 
     if request.method == "POST":         
         form = BookingForm(data=request.POST)
-        if form.is_valid():
+        if form.is_valid():           
             currentbooking = form.save(commit=False)
             currentbooking.name = request.user
             form.save()            
-            messages.add_message(request, messages.SUCCESS,'Booking created.')
+            messages.add_message(request, messages.SUCCESS, 'Booking created.')
             return HttpResponseRedirect(reverse('page_view'))                    
 
     form = BookingForm()
    
-    return render (
+    return render(
         request, 'book/book.html',
         {
             "form": form,
