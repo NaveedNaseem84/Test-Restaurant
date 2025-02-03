@@ -8,7 +8,7 @@ from .forms import BookingForm
 
 def page_view(request):
     bookings = MakeBooking.objects.all()
-    booking_count = bookings.filter(name = request.user).count()
+    booking_count = bookings.filter(name=request.user).count()
 
     if request.method == "POST":         
         form = BookingForm(data=request.POST)
@@ -29,6 +29,7 @@ def page_view(request):
             "booking_count": booking_count
         }
         )
+
 
 def delete_booking(request, booking_id):
     """
@@ -70,7 +71,7 @@ def update_booking(request, booking_id):
     #booking_count = bookings.filter(name = request.user).count()
     bookings = MakeBooking.objects.filter(user=request.user) 
 
-    return render (
+    return render(
         request, 'book/update_booking.html',
         {
             "form": form,

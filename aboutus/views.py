@@ -10,7 +10,7 @@ def about_me(request):
     """  
     about = AboutUs.objects.all().first()
    
-    count= AboutUs.objects.all().count()
+    count = AboutUs.objects.all().count()
     return render(
         request,
         "aboutus/about.html",
