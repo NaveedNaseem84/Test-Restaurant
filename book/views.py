@@ -59,11 +59,11 @@ def update_booking(request, booking_id):
     #form = BookingForm({
         #'name':bookings.name,
         #'email':bookings.email,
-       # 'phone':bookings.phone,
-        #'date':bookings.date,
+        #'phone':bookings.phone,
+       # 'date':bookings.date,
        # 'time_slot': bookings.time_slot,
        # 'number_of_people':bookings.number_of_people
-       # } )
+      #  } )
     
    
     

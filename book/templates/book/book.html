@@ -35,7 +35,7 @@
                     <p>phone: {{ booking.phone }} </p>
                     <p>for: {{ booking.number_of_people }} </p>
                     <button class="btn btn-danger" data-booking-id="{{ booking.id}}">Delete</button>
-                    <button class="btn btn-secondary" data-booking-id="{{ booking.id}}">Update</button>
+                    <button class="btn btn-secondary-update" data-booking-id="{{ booking.id}}">Update</button>
 
                     {% endif %}
                     {% endfor %}
@@ -70,7 +70,7 @@
                 </div>
             </div>
             <div class=" form-group">
-                <button class="btn btn-primary btn-secondary-update btn-block me-5 mt-2" type="submit">Submit</button>
+                <button class="btn btn-primary btn-secondary btn-block me-5 mt-2" type="submit">Submit</button>
                 <button class="btn btn-warning btn-block mt-2" type="reset">Reset</button>
             </div>
         </form>
