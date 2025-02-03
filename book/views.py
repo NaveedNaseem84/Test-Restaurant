@@ -7,22 +7,20 @@ from .forms import BookingForm
 
 
 def page_view(request):
-
-
-    if request.method == "POST":
-        form = BookingForm(data=request.POST)
-        if form.is_valid():
-            form.save()
-            messages.add_message(
-        request, messages.SUCCESS,
-        'Booking created.'
-    )          
-    form = BookingForm(initial={'name':request.user})
-    
     bookings = MakeBooking.objects.all()
     booking_count = bookings.filter(name = request.user).count()
-    #bookings = MakeBooking.objects.filter(user=request.user) 
 
+    if request.method == "POST":         
+        form = BookingForm(data=request.POST)
+        if form.is_valid():
+            currentbooking = form.save(commit=False)
+            currentbooking.name = request.user
+            form.save()            
+            messages.add_message(request, messages.SUCCESS,'Booking created.')
+            return HttpResponseRedirect(reverse('page_view'))                    
+
+    form = BookingForm()
+   
     return render (
         request, 'book/book.html',
         {
@@ -47,25 +45,25 @@ def delete_booking(request, booking_id):
 
 def update_booking(request, booking_id):
     bookings = get_object_or_404(MakeBooking, id=booking_id)
+
     if request.method == "POST":
         form = BookingForm(data=request.POST, instance=bookings)
         #form = BookingForm(initial={'name':bookings.name, 'phone':bookings.phone, 'date':bookings.datem } )
         if form.is_valid():
             form.save()
-            messages.add_message(
-        request, messages.SUCCESS,
-        'Booking updated.'
-        
-    )
+            messages.add_message(request, messages.SUCCESS,'Booking updated.')
+            return HttpResponseRedirect(reverse('page_view'))
+            
+    form = BookingForm(instance=bookings)
              
-    form = BookingForm({
-        'name':bookings.name,
-        'email':bookings.email,
-        'phone':bookings.phone,
-        'date':bookings.date,
-        'time_slot': bookings.time_slot,
-        'number_of_people':bookings.number_of_people
-        } )
+    #form = BookingForm({
+        #'name':bookings.name,
+        #'email':bookings.email,
+       # 'phone':bookings.phone,
+        #'date':bookings.date,
+       # 'time_slot': bookings.time_slot,
+       # 'number_of_people':bookings.number_of_people
+       # } )
     
    
     

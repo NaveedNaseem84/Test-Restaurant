@@ -1,5 +1,5 @@
 const deleteButtons = document.getElementsByClassName("btn-danger");
-const editButtons = document.getElementsByClassName("btn-secondary");
+const editButtons = document.getElementsByClassName("btn-secondary-update");
 
 for (let button of deleteButtons) {
     button.addEventListener("click", (e) => {
