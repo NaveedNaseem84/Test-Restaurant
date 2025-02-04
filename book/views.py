@@ -12,12 +12,19 @@ def page_view(request):
 
     if request.method == "POST":         
         form = BookingForm(data=request.POST)
-        if form.is_valid():           
-            currentbooking = form.save(commit=False)
-            currentbooking.name = request.user
-            form.save()            
-            messages.add_message(request, messages.SUCCESS, 'Booking created.')
-            return HttpResponseRedirect(reverse('page_view'))                    
+        if form.is_valid():
+            form_date = form.cleaned_data['date']
+            form_time_slot = form.cleaned_data['time_slot']
+
+            if MakeBooking.objects.filter(date=form_date, time_slot=form_time_slot).exists():
+                messages.add_message(request, messages.ERROR, 'Booking slot not available. Please try another.')
+
+            else:
+                currentbooking = form.save(commit=False)
+                currentbooking.name = request.user
+                form.save()
+                messages.add_message(request, messages.SUCCESS, 'Booking created.')
+                return HttpResponseRedirect(reverse('page_view'))                    
 
     form = BookingForm()
    
@@ -35,7 +42,7 @@ def delete_booking(request, booking_id):
     """
     view to delete selected booking
     """
-    booking = get_object_or_404(MakeBooking, id = booking_id)
+    booking = get_object_or_404(MakeBooking, id=booking_id)
     booking.delete()
     messages.add_message(
         request, messages.SUCCESS,
@@ -46,16 +53,22 @@ def delete_booking(request, booking_id):
 
 def update_booking(request, booking_id):
     bookings = get_object_or_404(MakeBooking, id=booking_id)
-
-    if request.method == "POST":
-        form = BookingForm(data=request.POST, instance=bookings)
-        #form = BookingForm(initial={'name':bookings.name, 'phone':bookings.phone, 'date':bookings.datem } )
-        if form.is_valid():
-            form.save()
-            messages.add_message(request, messages.SUCCESS,'Booking updated.')
-            return HttpResponseRedirect(reverse('page_view'))
-            
     form = BookingForm(instance=bookings)
+    if request.method == "POST":
+        form = BookingForm(data=request.POST, instance=bookings)        
+        if form.is_valid():
+            form_date = form.cleaned_data['date']
+            form_time_slot = form.cleaned_data['time_slot']
+
+            if MakeBooking.objects.filter(date=form_date, time_slot=form_time_slot).exists():
+                messages.add_message(request, messages.ERROR, 'Booking slot not available. Please try another.')
+
+            else:
+                form.save()
+                messages.add_message(request, messages.SUCCESS,'Booking updated.')
+                return HttpResponseRedirect(reverse('page_view'))
+            
+    
              
     #form = BookingForm({
         #'name':bookings.name,
@@ -69,7 +82,7 @@ def update_booking(request, booking_id):
    
     
     #booking_count = bookings.filter(name = request.user).count()
-    bookings = MakeBooking.objects.filter(user=request.user) 
+    #bookings = MakeBooking.objects.filter(user=request.user) 
 
     return render(
         request, 'book/update_booking.html',
