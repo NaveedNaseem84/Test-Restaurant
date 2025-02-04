@@ -1,105 +1,132 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
-
-
-
+{% extends 'base.html' %} {% load static %} {% block content %}
 
 <div class="form-group" style="text-align: center">
-    {% if user.is_authenticated %}
-    <h1 class="text-end m-3 text-center">welcome {{ user }}!</h1>
-    <div class="accordion accordion-flush " id="accordionFlushExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingOne">
-                <button class="accordion-button collapsed bg-dark text-light" style="padding:10px;" type="button"
-                    data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
-                    aria-controls="flush-collapseOne">
-                    {% if booking_count == 0 %}
-                    <h6 style="margin-left: auto;"> You have {{booking_count }} Bookings.</h6>
-                    {% elif booking_count < 2 %}
-                    <h6 style="margin-left: auto;"> You have {{booking_count }} Booking. Click here to review</h6>                    
-                    {% else %}
-                    <h6 style="margin-left: auto;"> You have {{booking_count }} Bookings. Click here to review</h6>
-                    {% endif %}
-                </button>
-            </h2>
-            <div id="flush-collapseOne" class="accordion-collapse collapse" acleria-labelledby="flush-headingOne"
-                data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body bg-dark text-white">
-                    {% for booking in bookings %}
-                    {% if user.username == booking.name %}
-                    <p>Booking info:</p>
-                    <p>on: {{ booking.id }} </p>
-                    <p>on: {{ booking.date }} </p>
-                    <p>at: {{ booking.time_slot }} </p>
-                    <p>phone: {{ booking.phone }} </p>
-                    <p>for: {{ booking.number_of_people }} </p>
-                    <button class="btn btn-danger" data-booking-id="{{ booking.id}}">Delete</button>
-                    <button class="btn btn-primary btn-secondary-update" data-booking-id="{{ booking.id}}">Update</button>
+  {% if user.is_authenticated %}
+  <h1 class="text-end m-3 text-center">welcome {{ user }}!</h1>
+  <div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingOne">
+        <button
+          class="accordion-button collapsed bg-dark text-light"
+          style="padding: 10px"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseOne"
+          aria-expanded="false"
+          aria-controls="flush-collapseOne"
+        >
+          {% if booking_count == 0 %}
+          <h6 style="margin-left: auto">
+            You have {{booking_count }} Bookings.
+          </h6>
+          {% elif booking_count < 2 %}
+          <h6 style="margin-left: auto">
+            You have {{booking_count }} Booking. Click here to review
+          </h6>
+          {% else %}
+          <h6 style="margin-left: auto">
+            You have {{booking_count }} Bookings. Click here to review
+          </h6>
+          {% endif %}
+        </button>
+      </h2>
+      <div
+        id="flush-collapseOne"
+        class="accordion-collapse collapse"
+        acleria-labelledby="flush-headingOne"
+        data-bs-parent="#accordionFlushExample"
+      >
+        <div class="accordion-body bg-dark text-white">
+          {% for booking in bookings %} {% if user.username == booking.name %}
+          <p>Booking info:</p>
+          <p>on: {{ booking.id }}</p>
+          <p>on: {{ booking.date }}</p>
+          <p>at: {{ booking.time_slot }}</p>
+          <p>phone: {{ booking.phone }}</p>
+          <p>for: {{ booking.number_of_people }}</p>
+          <button class="btn btn-danger" data-booking-id="{{ booking.id}}" 
+                  
+          >
+            Delete
+          </button>
+          <button
+            class="btn btn-primary btn-secondary-update"
+            data-booking-id="{{ booking.id}}"            
+          >
+            Update
+          </button>
 
-                    {% endif %}
-                    {% endfor %}
-
-
-                </div>
-
+          {% endif %} {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group" style="text-align: center">
+    <form method="post" style="padding-top: 2rem">
+      {% csrf_token %}
+      <div class="container-fluid text-center">
+        <div>New Booking?</div>
+        <div class="row">
+          <!--<div class="text-white p-3">Name: {{ form.name }} </div>-->
+        </div>
+        <div class="row">
+          <div class="text-white p-3">Email: {{ form.email }}</div>
+        </div>
+        <div class="row">
+          <div class="text-white p-3">phone: {{ form.phone }}</div>
+        </div>
+        <div class="row">
+          <div class="text-white p-3">
+            at: {{ form.time_slot }} on: {{form.date}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="text-white p-3">for: {{ form.number_of_people }}</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button
+          class="btn btn-primary btn-secondary btn-block me-5 mt-2"
+          type="submit"
+        >
+          Submit
+        </button>
+        <button class="btn btn-warning btn-block mt-2" type="reset">
+          Reset
+        </button>
+      </div>
+    </form>
+  </div>
+  {% else %}
+  <p class="text-end m-3 text-center">
+    Please login to create or manage bookings.
+  </p>
+  {% endif %} 
+  <div class="modal fade text-dark" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete booking?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="deleteConfirm" type="button" class="btn btn-primary">Delete</button>
+                <!--<a id="deleteConfirm" type="" class="btn btn-danger">Delete</a>-->
             </div>
         </div>
-
     </div>
-    <div class="form-group" style="text-align: center">
+</div>
 
-        <form method="post" style="padding-top: 2rem;">
-            {% csrf_token %}
-            <div class="container-fluid text-center">
-                <div>New Booking?</div>
-                <div class="row">
-                    <!--<div class="text-white p-3">Name: {{ form.name }} </div>-->
-                </div>
-                <div class="row">
-                    <div class="text-white p-3">Email: {{ form.email }} </div>
-                </div>
-                <div class="row">
-                    <div class="text-white p-3">phone: {{ form.phone }}</div>
-                </div>
-                <div class="row">
-                    <div class="text-white p-3">at: {{ form.time_slot }} on: {{form.date}}</div>
-                </div>
-                <div class="row">
-                    <div class="text-white p-3"> for: {{ form.number_of_people }}</div>
-                </div>
-            </div>
-            <div class=" form-group">
-                <button class="btn btn-primary btn-secondary btn-block me-5 mt-2" type="submit">Submit</button>
-                <button class="btn btn-warning btn-block mt-2" type="reset">Reset</button>
-            </div>
-        </form>
-    </div>
-    {% else %}
-    <p class="text-end m-3 text-center">Please login to create or manage bookings.</p>
-    {% endif %}
+  {% endblock content %}
 
-    <!--
+   {% block extras %}
+  <script src="{% static 'js/bookings.js' %}"></script>
 
-        <br>
-        {% for booking in bookings %}
-        {% if user.username == booking.name %}
-        <h1>Your Bookings</h1>
-        <p>Booking info:</p>
-        <p>on: {{ booking.date }} </p>
-        <p>at: {{ booking.time_slot }} </p>
-        <p>for: {{ booking.number_of_people }} people</p>
-        <button class="btn btn-danger">Delete</button>
-        <button class="btn btn-secondary">Update</button>
-        {% endif %}
-        {% endfor %}      
+  {% endblock %}
+</div>
 
-    </div>
 
-   -->
-
-    {% endblock content %}
-    {% block extras %}
-    <script src="{% static 'js/bookings.js' %}"></script>
-
-    {% endblock %}
