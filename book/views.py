@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .models import MakeBooking
 from .forms import BookingForm
+from datetime import date
 
 
 
@@ -18,6 +19,9 @@ def page_view(request):
 
             if MakeBooking.objects.filter(date=form_date, time_slot=form_time_slot).exists():
                 messages.add_message(request, messages.ERROR, 'Booking slot not available. Please try another.')
+
+            elif form_date < date.today():
+                messages.add_message(request, messages.ERROR, 'You can only book from today onwards!')
 
             else:
                 currentbooking = form.save(commit=False)
@@ -54,6 +58,7 @@ def delete_booking(request, booking_id):
 def update_booking(request, booking_id):
     bookings = get_object_or_404(MakeBooking, id=booking_id)
     form = BookingForm(instance=bookings)
+    #form = BookingForm(data=request.POST, instance=bookings)
     if request.method == "POST":
         form = BookingForm(data=request.POST, instance=bookings)        
         if form.is_valid():
@@ -61,7 +66,7 @@ def update_booking(request, booking_id):
             form_time_slot = form.cleaned_data['time_slot']
 
             if MakeBooking.objects.filter(date=form_date, time_slot=form_time_slot).exists():
-                messages.add_message(request, messages.ERROR, 'Booking slot not available. Please try another.')
+                messages.add_message(request, messages.ERROR, 'Booking slot not available. Please try another.')            
 
             else:
                 form.save()
